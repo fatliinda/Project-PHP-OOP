@@ -12,13 +12,19 @@
 
 
             <?php
-                    $user = new User();
-                    $result_set=$user->find_all_users();
+                    
+                    
+
+                    $result_set=User::find_all_users();
                     while($row=mysqli_fetch_array($result_set)){
 
 
                         echo $row['username']. "<br>";
                     }
+
+                    $result_id=User::find_user_by_id(1);
+
+                   echo $result_id['last_name'];
           
           
           ?>
