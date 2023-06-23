@@ -22,7 +22,7 @@
                         echo $row['username']. "<br>";
                     }
 
-                    $result_id=User::find_user_by_id(1);
+                    $result_id=User::find_user_by_id(2);
 
                    echo $result_id['last_name'];
           
