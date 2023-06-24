@@ -15,19 +15,20 @@
                     
                     
 
-                    $result_set=User::find_all_users();
-                    while($row=mysqli_fetch_array($result_set)){
+                  //  $result_set=User::find_all_users();
+                  //  while($row=mysqli_fetch_array($result_set)){
 
 
-                        echo $row['username']. "<br>";
-                    }
+                    //    echo $row['username']. "<br>";
+                   // }
 
                   //  $result_id=User::find_user_by_id(1);
                      //    $user= User::instantiation($result_id);
                       //   echo $user->id;  
                       
+                   
                       
-                      
+
           ?>
             <ol class="breadcrumb">
                 <li>
