@@ -1,7 +1,7 @@
 <?php
          ob_start();
-         include('myautoloader.php');
-         include('init.php');
+         require_once('myautoloader.php');
+    require_once('init.php');
 
 ?>
 
