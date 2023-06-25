@@ -1,5 +1,6 @@
 <?php
          ob_start();
+         include('myautoloader.php');
          include('init.php');
 
 ?>

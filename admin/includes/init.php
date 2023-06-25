@@ -1,5 +1,5 @@
 <?php
-        include('new_config.php');
+        //include('myautoloader.php');
         include('database.php');
         include('user.php');
 
