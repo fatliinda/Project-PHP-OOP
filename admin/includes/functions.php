@@ -10,10 +10,9 @@ function my_autoloader($class) {
 
 
 
-
 function redirect($location){
 
-   header("Location: {$location}")
+   header("Location: {$location}");
 
 
 }
