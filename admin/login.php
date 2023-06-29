@@ -8,13 +8,16 @@
 
 
 <?php
-$username = '';
-$password = '';
-$the_message = '';
 if ($session->is_signed_in()){
-    header('index.php');
-    echo 'hiiii';
+
+
+    redirect('index.php');
 }
+
+
+
+
+
 if(isset($_POST['submit'])){
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
@@ -24,7 +27,7 @@ $user_found = User::verify_user($username, $password);
 
 if($user_found){
     $session->login($user_found);
-    header('index.php');
+    redirect('index.php');
 
 }
 else {
