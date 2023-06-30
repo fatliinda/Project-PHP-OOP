@@ -7,6 +7,8 @@
         redirect('index.php');
    
  }
+
+ 
  
 
 
@@ -33,8 +35,7 @@
  else{
 
             $the_message="incorrect pass or username";
-            $username="";
-            $password="";
+           
 
 
  }
