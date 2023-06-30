@@ -48,8 +48,7 @@ class User{
             $username=$database->escape_string($username);
             $password=$database->escape_string($password);
 
-            $sql="SELECT * FROM users WHERE username= '{$username}' AND password= '
-            {$password}'";
+            $sql = "SELECT * FROM users WHERE username = '" . $username . "' AND password = '" . $password . "'";
 
 $the_result_array=self::find_this_query($sql);
                 
