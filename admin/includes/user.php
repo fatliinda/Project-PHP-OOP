@@ -7,6 +7,7 @@ class User{
 
 
         protected static $db_table='users';
+        protected static $db_table_fields= array('username','password','first_name','last_name');
         public $id;
         public $username;
         public $password;
@@ -85,6 +86,42 @@ return !empty($the_result_array) ? array_shift($the_result_array): false;
 
 
 
+            protected function properties(){
+
+                    //get_object_vars($this);
+                        $properties= array();
+
+                        foreach( self::$db_table_fields as $value){
+
+                                if(property_exists($this, $value)){
+                                    $properties[$value]= $this->$value;
+                        }
+                    
+                    
+                            return $properties;
+                    
+                    }
+
+            }
+    
+
+            private function clean_properties()
+{
+    global $database;
+
+    $clean_properties = array();
+
+    foreach ($this as $key => $value) {
+        if (property_exists($database,$key)) {
+            $clean_properties[$key] = $database->escape_string($value);
+        }
+    }
+
+    return $clean_properties;
+}
+
+
+
 
 
             public function save(){
@@ -93,55 +130,49 @@ return !empty($the_result_array) ? array_shift($the_result_array): false;
 
 
             }
-        public function create(){
-
-                    global $database;
-                    $sql="INSERT INTO " .self::$db_table . " (username,password, first_name,last_name)";
-                    $sql.="VALUES ('";
-                    $sql.= $database->escape_string($this->username)."','";
-                    $sql.= $database->escape_string($this->password)."','";
-                    $sql.= $database->escape_string($this->first_name)."','";
-                    $sql.= $database->escape_string($this->last_name)."')";
-
-
-                            if ($database->query($sql)){
-
-                                $this->id=$database->insert_id();
-                                return true;
-
-
-
-
-                            }
-                            else{
-
-
-                                return false;
-                            }
-
-
-
-        }
+            public function create()
+            {
+                global $database;
+            
+                $properties = $this->clean_properties();
+            
+                $columns = implode(",", array_keys($properties));
+                $values = "'" . implode("','", array_values($properties)) . "'";
+            
+                $sql = "INSERT INTO " . self::$db_table . " ($columns) VALUES ($values)";
+            
+                if ($database->query($sql)) {
+                    $this->id = $database->insert_id();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            
+            
 
 
 
         public function update()
         {
             global $database;
+
+
+            $properties=$this->clean_properties();
+
+            $prop_pairs=array();
+
+            foreach($properties as $key => $value){
+
+                        $prop_pairs[]="{$key}='{$value}'";
+
+            }
             
-            $username = $database->escape_string($this->username);
-            $password = $database->escape_string($this->password);
-            $firstName = $database->escape_string($this->first_name);
-            $lastName = $database->escape_string($this->last_name);
-            $id = $database->escape_string($this->id);
             
-            $sql = "UPDATE " .self::$db_table . " SET 
-                        username = '$username',
-                        password = '$password',
-                        first_name = '$firstName',
-                        last_name = '$lastName'
-                    WHERE ID = $id";
             
+            $sql = "UPDATE " .self::$db_table . " SET ";
+            $sql.=implode(",",$prop_pairs);
+            $sql.= " WHERE id= " .$database->escape_string($this->id);     
             $database->query($sql);
             
             return mysqli_affected_rows($database->connection) === 1;

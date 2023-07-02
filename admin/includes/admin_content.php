@@ -36,20 +36,18 @@
                     echo  $found_user->last_name;
                      
 
-                 //   $user= new User();
+                  $user= new User();
 
-                  //  $user->username="fatlinda";
-                  //  $user->password="fatlinda123";
-                  //  $user->first_name="fatlinda";
-                  //  $user->last_name="brahaj";
-
-
-                  //  $user-> create();
+                   $user->username="fatlindaDudu";
+                   $user->password="fatlinda12p3";
+                   $user->first_name="fatlindapp";
+                   $user->last_name="brahapj";
+                   $user-> create();
                     
 
-                    $user1=User::find_user_by_id(3);
-                   $user1->username="whatever1";
-                   $user1->save();
+                   $user1=User::find_user_by_id(6);
+                  $user1->username="Changed2";
+                   $user1->update();
                     
 
           ?>
