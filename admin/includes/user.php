@@ -83,6 +83,16 @@ return !empty($the_result_array) ? array_shift($the_result_array): false;
 
     }
 
+
+
+
+
+            public function save(){
+
+                        return isset($this->id)? $this->update() : $this->create();
+
+
+            }
         public function create(){
 
                     global $database;
