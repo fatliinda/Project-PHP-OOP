@@ -96,7 +96,7 @@ return !empty($the_result_array) ? array_shift($the_result_array): false;
 
                             if ($database->query($sql)){
 
-                                $this->id=$database->the_insert_id();
+                                $this->id=$database->insert_id();
                                 return true;
 
 
@@ -115,9 +115,40 @@ return !empty($the_result_array) ? array_shift($the_result_array): false;
 
 
 
+        public function update()
+        {
+            global $database;
+            
+            $username = $database->escape_string($this->username);
+            $password = $database->escape_string($this->password);
+            $firstName = $database->escape_string($this->first_name);
+            $lastName = $database->escape_string($this->last_name);
+            $id = $database->escape_string($this->id);
+            
+            $sql = "UPDATE users SET 
+                        username = '$username',
+                        password = '$password',
+                        first_name = '$firstName',
+                        last_name = '$lastName'
+                    WHERE ID = $id";
+            
+            $database->query($sql);
+            
+            return mysqli_affected_rows($database->connection) === 1;
+        }
+        
 
+        public function delete()
+{
+    global $database;
+    $id = $database->escape_string($this->id);
 
+    $sql = "DELETE FROM users WHERE id = '$id'";
 
+    $database->query($sql);
+
+    return mysqli_affected_rows($database->connection) === 1 ;
+}
 
 
 

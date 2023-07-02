@@ -34,6 +34,22 @@
                       
                       $found_user= User::find_user_by_id(1);
                     echo  $found_user->last_name;
+                     
+
+                 //   $user= new User();
+
+                  //  $user->username="fatlinda";
+                  //  $user->password="fatlinda123";
+                  //  $user->first_name="fatlinda";
+                  //  $user->last_name="brahaj";
+
+
+                  //  $user-> create();
+                    
+
+                    $user1=User::find_user_by_id(4);
+                   
+                    $user1->delete();
 
           ?>
             <ol class="breadcrumb">
