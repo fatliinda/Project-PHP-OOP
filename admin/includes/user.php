@@ -94,7 +94,20 @@ return !empty($the_result_array) ? array_shift($the_result_array): false;
                     $sql.= $database->escape_string($this->last_name)."')";
 
 
+                            if ($database->query($sql)){
 
+                                $this->id=$database->the_insert_id();
+                                return true;
+
+
+
+
+                            }
+                            else{
+
+
+                                return false;
+                            }
 
 
 
