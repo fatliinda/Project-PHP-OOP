@@ -86,40 +86,35 @@ return !empty($the_result_array) ? array_shift($the_result_array): false;
 
 
 
-            protected function properties(){
-
-                    //get_object_vars($this);
-                        $properties= array();
-
-                        foreach( self::$db_table_fields as $value){
-
-                                if(property_exists($this, $value)){
-                                    $properties[$value]= $this->$value;
-                        }
-                    
-                    
-                            return $properties;
-                    
-                    }
-
-            }
+    protected function properties()
+    {
+        $properties = array();
     
-
-            private function clean_properties()
-{
-    global $database;
-
-    $clean_properties = array();
-
-    foreach ($this as $key => $value) {
-        if (property_exists($database,$key)) {
-            $clean_properties[$key] = $database->escape_string($value);
+        foreach (self::$db_table_fields as $field) {
+            if (property_exists($this, $field)) {
+                $properties[$field] = $this->$field;
+            }
         }
+    
+        return $properties;
     }
-
-    return $clean_properties;
-}
-
+    
+    private function clean_properties()
+    {
+        global $database;
+    
+        $clean_properties = array();
+    
+        foreach ($this->properties() as $key => $value) {
+            if (property_exists($this, $key)) {
+                $clean_properties[$key] = $database->escape_string($value);
+            }
+        }
+    
+        return $clean_properties;
+    }
+    
+    
 
 
 
@@ -148,6 +143,7 @@ return !empty($the_result_array) ? array_shift($the_result_array): false;
                     return false;
                 }
             }
+            
             
             
 
