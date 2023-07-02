@@ -6,7 +6,7 @@
 class User{
 
 
-
+        protected static $db_table='users';
         public $id;
         public $username;
         public $password;
@@ -96,7 +96,7 @@ return !empty($the_result_array) ? array_shift($the_result_array): false;
         public function create(){
 
                     global $database;
-                    $sql="INSERT INTO users (username,password, first_name,last_name)";
+                    $sql="INSERT INTO " .self::$db_table . " (username,password, first_name,last_name)";
                     $sql.="VALUES ('";
                     $sql.= $database->escape_string($this->username)."','";
                     $sql.= $database->escape_string($this->password)."','";
@@ -135,7 +135,7 @@ return !empty($the_result_array) ? array_shift($the_result_array): false;
             $lastName = $database->escape_string($this->last_name);
             $id = $database->escape_string($this->id);
             
-            $sql = "UPDATE users SET 
+            $sql = "UPDATE " .self::$db_table . " SET 
                         username = '$username',
                         password = '$password',
                         first_name = '$firstName',
@@ -153,7 +153,7 @@ return !empty($the_result_array) ? array_shift($the_result_array): false;
     global $database;
     $id = $database->escape_string($this->id);
 
-    $sql = "DELETE FROM users WHERE id = '$id'";
+    $sql = "DELETE FROM " .self::$db_table . " WHERE id = '$id'";
 
     $database->query($sql);
 

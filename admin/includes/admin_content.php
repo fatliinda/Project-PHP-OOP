@@ -47,9 +47,10 @@
                   //  $user-> create();
                     
 
-                    $user1=User::find_user_by_id(4);
-                   
-                    $user1->delete();
+                    $user1=User::find_user_by_id(3);
+                   $user1->username="whatever1";
+                   $user1->save();
+                    
 
           ?>
             <ol class="breadcrumb">
