@@ -36,18 +36,25 @@
                     echo  $found_user->last_name;
                      
 
-                  $user= new User();
+                 // $user= new User();
 
-                   $user->username="fatlindaDudu";
-                   $user->password="fatlinda12p3";
-                   $user->first_name="fatlindapp";
-                   $user->last_name="brahapj";
-                   $user-> create();
+                  // $user->username="fatlindaDudu";
+                  // $user->password="fatlinda12p3";
+                  // $user->first_name="fatlindapp";
+                  // $user->last_name="brahapj";
+                  // $user-> create();
                     
 
-                   $user1=User::find_by_id(6);
-                  $user1->username="Changed2";
-                   $user1->update();
+                  // $user1=User::find_by_id(6);
+                 // $user1->username="Changed2";
+                 //  $user1->update();
+
+                $photos=Photo::find_all();
+
+                foreach($photos as $photo){
+
+                    echo $photo->filename;
+                }
                     
 
           ?>
