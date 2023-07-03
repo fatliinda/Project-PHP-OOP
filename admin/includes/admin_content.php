@@ -26,13 +26,13 @@
                      //    $user= User::instantiation($result_id);
                       //   echo $user->id;  
                       
-                      $users=User::find_all_users();
+                      $users=User::find_all();
                       foreach($users as $user){
 
                         echo $user->username."<br>";
                       }
                       
-                      $found_user= User::find_user_by_id(1);
+                      $found_user= User::find_by_id(1);
                     echo  $found_user->last_name;
                      
 
@@ -45,7 +45,7 @@
                    $user-> create();
                     
 
-                   $user1=User::find_user_by_id(6);
+                   $user1=User::find_by_id(6);
                   $user1->username="Changed2";
                    $user1->update();
                     
