@@ -85,7 +85,7 @@
 
                         <tr>
                             
-                        <td><img src='http://placehold.it/6x62'</td>
+                        <td><img src='<?php echo $photo->picture_path()?>'</td>
                         <td><?php echo $photo->photo_id ?></td>
                         <td><?php echo $photo->filename ?></td>
                         <td><?php echo $photo->size ?></td>
