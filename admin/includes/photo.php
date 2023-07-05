@@ -32,6 +32,8 @@ class Photo extends Db_object{
 
 
 
+
+
 public function set_file($file){
 
     if(empty($file)|| !$file || !is_array($file)){
@@ -48,13 +50,15 @@ public function set_file($file){
     else{
 
 
-            $this->filename=basename($file['name']);
-            $this->tmp_path=basename($file['tmp_name']);
-            $this->type=basename($file['type']);
-            $this->size=basename($file['size']);
+        $this->tmp_path = $file['tmp_name'];
+        $this->type = $file['type'];
+        $this->size = $file['size'];
+        
 
     }
 }
+
+      
 
     public function save(){
 
@@ -65,7 +69,7 @@ public function set_file($file){
           
           
           else{ 
-
+ 
             if(!empty($custom_errors)){
                 return false;
             }
@@ -77,9 +81,32 @@ public function set_file($file){
             }
 
             $target_path= SITE_ROOT . DS . 'admin' .DS. $this->upload_directory . DS. $this->filename;
-            $this->create();
-        
-        
+           echo $target_path;
+        if(file_exists($target_path)){
+
+            $this->custom_errors[]="this file already exists";
+            return false;
+        }
+
+        if(move_uploaded_file($this->tmp_path,$target_path)){
+
+            if($this->create()){
+
+                echo "<h1>uploaded</h1>";
+                return true;
+
+            }
+            else{
+
+                    $this->custom_errors[]="the folder does not have permission ";
+                    return false;
+
+
+            }
+
+
+        }
+       
         
         
         }
