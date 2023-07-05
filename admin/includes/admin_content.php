@@ -56,7 +56,7 @@
                     echo $photo->filename;
                 }
 
-                echo INCLUDES_PATH;
+               
                     
 
           ?>
