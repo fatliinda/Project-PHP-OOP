@@ -86,6 +86,14 @@
                         <tr>
                             
                         <td><img src='<?php echo $photo->picture_path()?>'</td>
+                            <div class="pictures-link">
+
+
+
+                            <a href='delete_photo.php'> Delete </a>
+
+                            </div>
+                        
                         <td><?php echo $photo->photo_id ?></td>
                         <td><?php echo $photo->filename ?></td>
                         <td><?php echo $photo->size ?></td>
