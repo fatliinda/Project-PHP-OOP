@@ -85,9 +85,9 @@
 
                         <tr>
                             
-                        <td><img src='<?php echo $photo->picture_path()?>'</td>
+                        <td><img  width="200" height ="200"src='<?php echo $photo->picture_path()?>'</td>
                             <div class="pictures-link">
-                            <a href="delete_photo.php/?id=<?php $photo->photo_id ?>"> Delete </a>
+                            <a href="delete_photo.php/?id=<?php echo $photo->photo_id ?>"> Delete </a>
 
                             </div>
                         
