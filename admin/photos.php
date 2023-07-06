@@ -87,11 +87,11 @@
                             
                         <td><img  width="200" height ="200"src='<?php echo $photo->picture_path()?>'</td>
                             <div class="pictures-link">
-                            <a href="delete_photo.php/?id=<?php echo $photo->photo_id ?>"> Delete </a>
+                            <a href="delete_photo.php/?id=<?php echo $photo->id ?>"> Delete </a>
 
                             </div>
                         
-                        <td><?php echo $photo->photo_id ?></td>
+                        <td><?php echo $photo->id ?></td>
                         <td><?php echo $photo->filename ?></td>
                         <td><?php echo $photo->size ?></td>
 
