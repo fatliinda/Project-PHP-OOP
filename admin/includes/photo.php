@@ -2,7 +2,7 @@
 
 class Photo extends Db_object {
     protected static $db_table = 'photos';
-    protected static $db_table_fields = array('photo_id', 'title', 'description', 'filename', 'type', 'size');
+    protected static $db_table_fields = array('id', 'title', 'description', 'filename', 'type', 'size');
     public $id;
     public $title;
     public $description;
@@ -51,7 +51,7 @@ class Photo extends Db_object {
 
     public function save()
     {
-        if ($this->photo_id) {
+        if ($this->id) {
             $this->update();
         } else {
             if (!empty($this->custom_errors)) {
@@ -109,6 +109,25 @@ if (move_uploaded_file($this->tmp_path, $target_path)) {
             }
         }
     }
+
+
+    public function delete_photo()
+    {
+        // Delete photo from the database
+        if ($this->delete()) {
+            $target_path = 'C:' . DIRECTORY_SEPARATOR . 'xampp' . DIRECTORY_SEPARATOR . 'htdocs' . DIRECTORY_SEPARATOR . 'learn' . DIRECTORY_SEPARATOR . 'Detyra1' . DIRECTORY_SEPARATOR . 'CMS_TEMPLATE  PHP' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $this->filename;
+    
+            // Delete photo file from the server
+            if (unlink($target_path)) {
+                echo "Photo deleted successfully.";
+            } else {
+                echo "Failed to delete the photo file.";
+            }
+        } else {
+            echo "Failed to delete the photo from the database.";
+        }
+    }
+    
     
 }
 

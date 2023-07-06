@@ -1,4 +1,4 @@
-<?php include("includes/header.php"); ?>
+<?php include("../admin/includes/header.php"); ?>
 <?php if(!$session->is_signed_in()){
         redirect('login.php');
       }
@@ -87,7 +87,9 @@
                             
                         <td><img  width="200" height ="200"src='<?php echo $photo->picture_path()?>'</td>
                             <div class="pictures-link">
-                            <a href="delete_photo.php/?id=<?php echo $photo->id ?>"> Delete </a>
+                            <a href="../admin/includes/delete_photo.php?id=<?php echo $photo->id ?>">Delete</a>
+
+
 
                             </div>
                         
